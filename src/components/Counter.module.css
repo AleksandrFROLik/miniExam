@@ -1,0 +1,49 @@
+
+.counterWrapper {
+    width: 255px;
+    height: 300px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+
+    border: 2px solid #61dafb;
+    border-radius: 15px;
+    background:  #282c34;
+}
+
+.button {
+    width: 200px;
+    height: 75px;
+    border:  2px solid #61dafb;
+    bottom: 5px;
+    margin: 20px auto;
+    background: #282c34;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: space-around;
+
+}
+
+
+
+
+
+/*.App-header {*/
+/*  background-color: #282c34;*/
+/*  min-height: 100vh;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  font-size: calc(10px + 2vmin);*/
+/*  color: white;*/
+/*}*/
+
+/*.App-link {*/
+/*  color: #61dafb;*/
+/*}*/
+

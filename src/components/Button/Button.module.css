@@ -1,0 +1,28 @@
+.buttonItem {
+    width: 75px;
+    height: 30px;
+    margin: auto;
+
+    background-color: #61dafb;
+    border-radius: 3px;
+
+    font-size: 15px;
+    color: #085267;
+    font-weight: bold;
+
+}
+
+.notActive {
+    width: 75px;
+    height: 30px;
+    margin: auto;
+
+    background-color: #61dafb;
+    border-radius: 3px;
+
+    font-size: 15px;
+    color: #085267;
+    font-weight: bold;
+    opacity: .3;
+}
+

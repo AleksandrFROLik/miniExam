@@ -25,9 +25,10 @@ export const Counter: React.FC<propsTypeCounter> = ({
         let result = counter + 1
         setCounter(result)
     }
-    const callBAckHandlerForReset = () => {
-        console.log('hello')
-        setCounter(startCounter)}
+    const callBackHandlerForReset = () => {
+        setCounter(startCounter)
+    }
+
 
 
     return (
@@ -43,7 +44,7 @@ export const Counter: React.FC<propsTypeCounter> = ({
                         name="Incr"
                 />
                 <Button
-                        callBack={callBAckHandlerForReset}
+                        callBack={callBackHandlerForReset}
                         disabled={counter === startCounter}
                         name="Reset"
                 />

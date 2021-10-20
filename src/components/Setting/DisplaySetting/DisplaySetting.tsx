@@ -2,18 +2,18 @@ import React, {ChangeEvent} from "react";
 import styles from "./DisplaySetting.module.css";
 
 type DisplaySettingType = {
-
+    minInput: (value: string) => void
+    maxInput: (value: string) => void
 }
 
-export const DisplaySetting = ({}:DisplaySettingType) => {
+export const DisplaySetting = ({minInput, maxInput}: DisplaySettingType) => {
 
-    const onChangeHandlerMin =(e: ChangeEvent<HTMLInputElement>) => {
-        localStorage.setItem('minValue', e.currentTarget.value)
+    const onChangeHandlerMin = (e: ChangeEvent<HTMLInputElement>) => {
+        minInput(e.currentTarget.value)
     }
-    const onChangeHandlerMax = (e: ChangeEvent<HTMLInputElement>) =>{
-        localStorage.setItem('maxValue', e.currentTarget.value)
+    const onChangeHandlerMax = (e: ChangeEvent<HTMLInputElement>) => {
+        maxInput(e.currentTarget.value)
     }
-
 
     return (
         <div className={styles.display}>

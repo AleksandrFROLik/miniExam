@@ -33,18 +33,16 @@ export const Counter: React.FC<propsTypeCounter> = ({
     return (
         <div className={styles.counterWrapper}>
             <Display
-                startCounter={startCounter}
                 finishCounter={finishCounter}
+
                 counter={counter}/>
             <div className={styles.button}>
-                <Button startCounter={startCounter}
-                        finishCounter={finishCounter}
+                <Button
                         callBack={callBackHandlerForIncr}
                         disabled={counter === finishCounter}
                         name="Incr"
                 />
-                <Button startCounter={startCounter}
-                        finishCounter={finishCounter}
+                <Button
                         callBack={callBAckHandlerForReset}
                         disabled={counter === startCounter}
                         name="Reset"

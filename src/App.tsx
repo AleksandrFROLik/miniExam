@@ -9,12 +9,18 @@ function App() {
     let [startValue, setStartValue] = useState<number>(0)
     let [finishValue, setFinishValue] = useState<number>(0)
     let [counter, setCounter] = useState<number>(startValue)
+    let[error, setError]=useState<boolean>(false)
 
-    useEffect(()=>{
+
+
+
+    useEffect(()=>{ // useEffect нужен для отрисовки при перезагрузке страницыБ чтоб значение в input не равнялось нулю.
         let minString = localStorage.getItem('minValue')
         if(minString) {
             let minNumber = JSON.parse(minString)
+            setStartValue(minNumber)
             setCounter(minNumber)
+
         }
     },[])
     useEffect(()=>{
@@ -25,7 +31,7 @@ function App() {
         }
     },[])
 
-    const callBackHandlerForSetHandler = () => {
+    const callBackHandlerForSet = () => {
         setCounter(startValue)
     }
     const minInput = (value:string) => {
@@ -36,14 +42,16 @@ function App() {
     }
     const maxInput = (value:string) => {
         localStorage.setItem('maxValue', value)
-        let max = JSON.parse(value)
+         let max = JSON.parse(value)
         setFinishValue(max)
     }
     return (
         <div className="App">
-            <Setting callBackHandlerForSet={callBackHandlerForSetHandler}
+            <Setting callBackHandlerForSet={callBackHandlerForSet}
                      minInput={minInput}
                      maxInput={maxInput}
+                     startValue={startValue}
+                     finishValue={finishValue}
             />
             <Counter
                 startCounter={startValue}

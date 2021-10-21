@@ -35,7 +35,6 @@ export const Counter: React.FC<propsTypeCounter> = ({
         <div className={styles.counterWrapper}>
             <Display
                 finishCounter={finishCounter}
-
                 counter={counter}/>
             <div className={styles.button}>
                 <Button

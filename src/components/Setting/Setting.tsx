@@ -6,17 +6,17 @@ import styles from "../Counter.module.css";
 
 
 type SettingType = {
-    callBackHandlerForSet:()=>void
-    minInput:(value:string)=>void
-    maxInput:(value:string)=>void
+    callBackHandlerForSet: () => void
+    minInput: (min: number) => void
+    maxInput: (max: number) => void
     startValue: number
-    finishValue:number
+    finishValue: number
 }
 
-export  const Setting = ({callBackHandlerForSet, minInput, maxInput, startValue,finishValue}:SettingType) => {
+export const Setting = ({callBackHandlerForSet, minInput, maxInput, startValue, finishValue}: SettingType) => {
 
 
-    return(
+    return (
         <div className={style.counterWrapper}>
             <DisplaySetting minInput={minInput}
                             maxInput={maxInput}
@@ -24,7 +24,10 @@ export  const Setting = ({callBackHandlerForSet, minInput, maxInput, startValue,
                             finishValue={finishValue}
             />
             <div className={styles.button}>
-                <Button  callBack={callBackHandlerForSet} name='Set' />
+                <Button callBack={callBackHandlerForSet}
+                        name='Set'
+                        disabled={startValue === finishValue || startValue >= finishValue || startValue < 0}
+                />
             </div>
 
         </div>

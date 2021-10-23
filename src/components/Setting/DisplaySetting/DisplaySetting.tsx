@@ -1,9 +1,9 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent} from "react";
 import styles from "./DisplaySetting.module.css";
 
 type DisplaySettingType = {
-    minInput: (value: string) => void
-    maxInput: (value: string) => void
+    minInput: (min: number) => void
+    maxInput: (max: number) => void
     startValue: number
     finishValue: number
 
@@ -11,15 +11,19 @@ type DisplaySettingType = {
 
 export const DisplaySetting = ({minInput, maxInput, startValue, finishValue}: DisplaySettingType) => {
 
-
-
     const onChangeHandlerMin = (e: ChangeEvent<HTMLInputElement>) => {
-        minInput(e.currentTarget.value)
+        let minValue = e.currentTarget.value
+        let min = JSON.parse(minValue)
+        minInput(min)
+        if(min >= 0)localStorage.setItem("minValue", minValue)
+
     }
     const onChangeHandlerMax = (e: ChangeEvent<HTMLInputElement>) => {
-        maxInput(e.currentTarget.value)
+        let maxValue = e.currentTarget.value
+        let max = JSON.parse(maxValue)
+        maxInput(max)
+        if(max > 0) localStorage.setItem("maxValue", maxValue)
     }
-
 
     return (
         <div className={styles.display}>
@@ -30,7 +34,7 @@ export const DisplaySetting = ({minInput, maxInput, startValue, finishValue}: Di
                     type='number'
                     placeholder='Введите число'
                     onChange={onChangeHandlerMin}
-                   className={styles.error}
+                    className={startValue < 0 ? styles.error : styles.noError}
                 />
                 <p>Max</p>
                 <input
@@ -38,6 +42,7 @@ export const DisplaySetting = ({minInput, maxInput, startValue, finishValue}: Di
                     type='number'
                     placeholder='Введите число'
                     onChange={onChangeHandlerMax}
+                    className={finishValue < 0 ? styles.error : styles.noError}
                 />
             </div>
 

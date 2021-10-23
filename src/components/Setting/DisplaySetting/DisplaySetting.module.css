@@ -22,11 +22,14 @@
     color:  white;
 }
 
-/*.error {*/
-/*    border: 1px solid red;*/
-/*    background-color: rgba(250, 3, 48, 0.5);*/
-/*    border-radius: 2px;*/
-/*}*/
+.error {
+    border: 1px solid red;
+    background-color: rgba(250, 3, 48, 0.5);
+    border-radius: 2px;
+}
+.noError{
+
+}
 
 
 /*.max {*/

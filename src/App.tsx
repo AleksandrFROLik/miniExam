@@ -9,9 +9,6 @@ function App() {
     let [startValue, setStartValue] = useState<number>(0)
     let [finishValue, setFinishValue] = useState<number>(0)
     let [counter, setCounter] = useState<number>(startValue)
-    let[error, setError]=useState<boolean>(false)
-
-
 
 
     useEffect(()=>{ // useEffect нужен для отрисовки при перезагрузке страницыБ чтоб значение в input не равнялось нулю.
@@ -34,15 +31,10 @@ function App() {
     const callBackHandlerForSet = () => {
         setCounter(startValue)
     }
-    const minInput = (value:string) => {
-        localStorage.setItem('minValue', value)
-        let min = JSON.parse(value)
+    const minInput = (min:number) => {
         setStartValue(min)
-
     }
-    const maxInput = (value:string) => {
-        localStorage.setItem('maxValue', value)
-         let max = JSON.parse(value)
+    const maxInput = (max:number) => {
         setFinishValue(max)
     }
     return (
@@ -54,8 +46,8 @@ function App() {
                      finishValue={finishValue}
             />
             <Counter
-                startCounter={startValue}
-                finishCounter={finishValue}
+                startValue={startValue}
+                finishValue={finishValue}
                 counter={counter}
                 setCounter={setCounter}
             />

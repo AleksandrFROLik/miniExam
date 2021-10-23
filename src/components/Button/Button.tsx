@@ -3,7 +3,6 @@ import styles from './Button.module.css'
 
 
 type  propsTypeCounter = {
-
     callBack: () => void
     name: string
     disabled?: boolean
@@ -20,7 +19,6 @@ export const Button: React.FC<propsTypeCounter> = ({
     const onClickHandler = () => {
         callBack()
     }
-
     return (
         <button onClick={onClickHandler} disabled={disabled}
                 className={disabled ? styles.notActive : styles.buttonItem}>{name}</button>

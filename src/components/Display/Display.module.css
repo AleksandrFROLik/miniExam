@@ -30,7 +30,17 @@
     color: red;
     font-size: 80px;
     font-weight: bold;
+}
 
+.text {
+    display: block;
+    position: absolute;
+    top: -18%;
+    left: 40%;
+    text-align: left;
+    font-size: 20px;
+    font-weight: bold;
+    color: red;
 }
 
 

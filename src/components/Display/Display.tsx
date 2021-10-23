@@ -2,16 +2,24 @@ import React from "react";
 import styles from './Display.module.css'
 
 type  propsTypeCounter = {
-    finishCounter:number
+    startValue: number
+    finishValue: number
     counter: number
 
 }
 
-export const Display: React.FC<propsTypeCounter> = ({ finishCounter, counter, ...props}:propsTypeCounter) => {
+export const Display: React.FC<propsTypeCounter> = ({
+                                                        startValue,
+                                                        finishValue,
+                                                        counter,
 
-    return(
-            <div className={styles.display}>
-                <p className={counter===finishCounter ? styles.max : styles.textItem}>{counter}</p>
-            </div>
+                                                        ...props
+                                                    }: propsTypeCounter) => {
+
+    return (
+
+        <div className={styles.display}>
+            <p className={counter === finishValue ? styles.max : styles.textItem}>{counter}</p>
+        </div>
     )
 }

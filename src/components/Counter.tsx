@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import styles from './Counter.module.css'
 import {Display} from "./Display/Display";
 import {Button} from "./Button/Button";
@@ -8,6 +8,8 @@ type  propsTypeCounter = {
     finishValue: number
     counter: number
     setCounter: (counter: number) => void
+    disabled: boolean
+
 }
 
 export const Counter: React.FC<propsTypeCounter> = ({
@@ -15,6 +17,8 @@ export const Counter: React.FC<propsTypeCounter> = ({
                                                         finishValue,
                                                         counter,
                                                         setCounter,
+                                                        disabled,
+
                                                     }: propsTypeCounter) => {
 
     const callBackHandlerForIncr = () => {
@@ -34,18 +38,19 @@ export const Counter: React.FC<propsTypeCounter> = ({
                 startValue={startValue}
                 finishValue={finishValue}
                 counter={counter}
-
             />
 
             <div className={styles.button}>
                 <Button
                     callBack={callBackHandlerForIncr}
-                    disabled={counter === finishValue || startValue >= finishValue || startValue < 0}
+                    disabled={!disabled}
+                    // disabled={disabled || counter === finishValue || startValue >= finishValue || startValue < 0}
                     name="Incr"
                 />
                 <Button
                     callBack={callBackHandlerForReset}
-                    disabled={counter === startValue || startValue >= finishValue || startValue < 0}
+                    disabled={!disabled || counter === startValue}
+                    // disabled={!disabled || counter === startValue || startValue >= finishValue || startValue < 0}
                     name="Reset"
                 />
             </div>

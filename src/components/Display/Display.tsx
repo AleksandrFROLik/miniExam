@@ -6,6 +6,7 @@ type  propsTypeCounter = {
     finishValue: number
     counter: number
 
+
 }
 
 export const Display: React.FC<propsTypeCounter> = ({
@@ -17,7 +18,6 @@ export const Display: React.FC<propsTypeCounter> = ({
                                                     }: propsTypeCounter) => {
 
     return (
-
         <div className={styles.display}>
             <p className={counter === finishValue ? styles.max : styles.textItem}>{counter}</p>
         </div>

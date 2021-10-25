@@ -42,5 +42,14 @@
     font-weight: bold;
     color: #ff0000;
 }
-
+.errorEvent {
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
+}
+ .begin {
+     color: white;
+     font-size: 18px;
+     font-weight: bold;
+ }
 

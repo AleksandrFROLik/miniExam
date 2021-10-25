@@ -9,6 +9,12 @@ type  propsTypeCounter = {
     counter: number
     setCounter: (counter: number) => void
     disabled: boolean
+    alarm: string | null
+    edit: boolean
+    setAlarm: (alarm: string | null) => void
+    setEdit: (edit: boolean) => void
+    begin: string | null
+    setBegin: (begin: string | null) => void
 
 }
 
@@ -18,8 +24,24 @@ export const Counter: React.FC<propsTypeCounter> = ({
                                                         counter,
                                                         setCounter,
                                                         disabled,
+                                                        alarm,
+                                                        edit,
+                                                        setAlarm,
+                                                        setEdit,
+                                                        begin,
+                                                        setBegin,
 
                                                     }: propsTypeCounter) => {
+
+    if (startValue < 0 || finishValue < 0 || startValue > finishValue) {
+        setEdit(true)
+        setAlarm('Incorrect value')
+    }
+
+    if (startValue === 0 && finishValue === 0) {
+        setEdit(true)
+        setBegin('enter value and press "set"')
+    }
 
     const callBackHandlerForIncr = () => {
         if (counter >= finishValue) {
@@ -38,12 +60,15 @@ export const Counter: React.FC<propsTypeCounter> = ({
                 startValue={startValue}
                 finishValue={finishValue}
                 counter={counter}
+                alarm={alarm}
+                edit={edit}
+                begin={begin}
             />
 
             <div className={styles.button}>
                 <Button
                     callBack={callBackHandlerForIncr}
-                    disabled={!disabled}
+                    disabled={!disabled || counter === finishValue}
                     // disabled={disabled || counter === finishValue || startValue >= finishValue || startValue < 0}
                     name="Incr"
                 />

@@ -6,9 +6,11 @@ type DisplaySettingType = {
     maxInput: (max: number) => void
     startValue: number
     finishValue: number
+    disabled: boolean
+
 }
 
-export const DisplaySetting = ({minInput, maxInput, startValue, finishValue}: DisplaySettingType) => {
+export const DisplaySetting = ({minInput, maxInput, startValue, finishValue, disabled}: DisplaySettingType) => {
 
     const onChangeHandlerMin = (e: ChangeEvent<HTMLInputElement>) => {
         let minValue = e.currentTarget.value
@@ -29,14 +31,14 @@ export const DisplaySetting = ({minInput, maxInput, startValue, finishValue}: Di
                     value={finishValue}
                     type='number'
                     onChange={onChangeHandlerMax}
-                    className={finishValue < 0 || startValue === finishValue || startValue > finishValue ? styles.error : styles.noError}
+                    // className={finishValue < 0 || startValue === finishValue || startValue > finishValue ? styles.error : styles.noError}
                 />
                 <p>start value</p>
                 <input
                     value={startValue}
                     type='number'
                     onChange={onChangeHandlerMin}
-                    className={startValue < 0 || startValue === finishValue || startValue > finishValue ? styles.error : styles.noError}
+                    // className={startValue < 0 || startValue === finishValue || startValue > finishValue ? styles.error : styles.noError}
                 />
             </div>
 

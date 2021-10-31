@@ -14,25 +14,40 @@ function App() {
     let [begin, setBegin] = useState<string | null>(null)
     let [edit, setEdit] = useState<boolean>(false)
 
-    useEffect(() => { // useEffect нужен для отрисовки при перезагрузке страницы, чтоб значение в input не равнялось нулю.
+
+    useEffect(() => {
+        if (startValue === 0 && finishValue === 0) {
+            setEdit(true)
+            setBegin('enter value and press "set"')
+        }
+    }, [])
+
+    useEffect(() => { //useEffect применяется когда обновляется страница
         let minString = localStorage.getItem('minValue')
         if (minString) {
             let minNumber = JSON.parse(minString)
             setStartValue(minNumber)
             setCounter(minNumber)
-            setDisabled(true)
             setEdit(false)
-
         }
-    }, [])
+        setDisabled(true)
 
-    useEffect(() => {
         let maxString = localStorage.getItem('maxValue')
         if (maxString) {
             let maxNumber = JSON.parse(maxString)
             setFinishValue(maxNumber)
         }
     }, [])
+
+    useEffect(() => { //useEffect  отрабатыввает при изменении startValue
+        if (startValue < 0 || startValue > finishValue || finishValue < 0) {
+            setAlarm('Incorrect value')
+            setEdit(true)
+        } else if (startValue > 0 || startValue < finishValue || finishValue > 0) {
+            setEdit(false)
+        }
+    }, [startValue, finishValue])
+
 
     const callBackHandlerForSet = () => {
         setCounter(startValue)
@@ -41,6 +56,7 @@ function App() {
         localStorage.setItem("minValue", startValue.toString())
         localStorage.setItem("maxValue", finishValue.toString())
     }
+
 
     const minInput = (min: number) => {
         setStartValue(min)
@@ -73,7 +89,6 @@ function App() {
                 setEdit={setEdit}
                 begin={begin}
                 setBegin={setBegin}
-
             />
         </div>
     );

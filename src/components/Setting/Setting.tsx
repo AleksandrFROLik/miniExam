@@ -12,6 +12,7 @@ type SettingType = {
     startValue: number
     finishValue: number
     disabled: boolean
+
 }
 
 export const Setting = ({
@@ -20,7 +21,8 @@ export const Setting = ({
                             maxInput,
                             startValue,
                             finishValue,
-                            disabled
+                            disabled,
+
                         }: SettingType) => {
 
 
@@ -30,6 +32,8 @@ export const Setting = ({
                             maxInput={maxInput}
                             startValue={startValue}
                             finishValue={finishValue}
+                            disabled={disabled}
+
             />
             <div className={styles.button}>
                 <Button callBack={callBackHandlerForSet}

@@ -33,16 +33,6 @@ export const Counter: React.FC<propsTypeCounter> = ({
 
                                                     }: propsTypeCounter) => {
 
-    if (startValue < 0 || finishValue < 0 || startValue > finishValue) {
-        setEdit(true)
-        setAlarm('Incorrect value')
-    }
-
-    if (startValue === 0 && finishValue === 0) {
-        setEdit(true)
-        setBegin('enter value and press "set"')
-    }
-
     const callBackHandlerForIncr = () => {
         if (counter >= finishValue) {
             return

@@ -19,12 +19,11 @@ export const Display: React.FC<propsTypeCounter> = ({
                                                         begin,
                                                         ...props
                                                     }: propsTypeCounter) => {
-    console.log(edit)
 
     return (
         edit
             ? <div className={styles.display}>
-                <p className={alarm ? styles.errorEvent : styles.begin}>{alarm || begin}</p>
+                <p className={alarm ? styles.errorEvent : styles.begin}>{alarm ? alarm : begin}</p>
             </div>
             : <div className={styles.display}>
                 <p className={counter === finishValue ? styles.max : styles.textItem}>{counter}</p>

@@ -59,13 +59,11 @@ export const Counter: React.FC<propsTypeCounter> = ({
                 <Button
                     callBack={callBackHandlerForIncr}
                     disabled={!disabled || counter === finishValue}
-                    // disabled={disabled || counter === finishValue || startValue >= finishValue || startValue < 0}
                     name="Incr"
                 />
                 <Button
                     callBack={callBackHandlerForReset}
                     disabled={!disabled || counter === startValue}
-                    // disabled={!disabled || counter === startValue || startValue >= finishValue || startValue < 0}
                     name="Reset"
                 />
             </div>

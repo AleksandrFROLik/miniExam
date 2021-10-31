@@ -4,6 +4,8 @@ import {Counter} from "./components/Counter";
 import {Setting} from "./components/Setting/Setting";
 
 
+
+
 function App() {
 
     let [startValue, setStartValue] = useState<number>(0)
@@ -15,20 +17,35 @@ function App() {
     let [edit, setEdit] = useState<boolean>(false)
 
 
-    useEffect(() => {
+    useEffect(() => { //useEffect  отрабатыввает в самом начале.
+
         if (startValue === 0 && finishValue === 0) {
             setEdit(true)
             setBegin('enter value and press "set"')
         }
-    }, [])
+        console.log('1')
+    },[])
+
+    useEffect(() => { //useEffect  отрабатыввает при изменении startValue
+        console.log('2')
+        if (startValue < 0 || startValue > finishValue || finishValue < 0 || (startValue>0 && finishValue>0 && startValue === finishValue)) {
+            setAlarm('Incorrect value')
+            setEdit(true)
+        } else if (startValue > 0 || startValue < finishValue || finishValue > 0) {
+            setAlarm(null)
+            setEdit(true)
+            setBegin('enter value and press "set"')
+        }
+
+    },[startValue, finishValue])
 
     useEffect(() => { //useEffect применяется когда обновляется страница
+        console.log('3')
         let minString = localStorage.getItem('minValue')
         if (minString) {
             let minNumber = JSON.parse(minString)
             setStartValue(minNumber)
             setCounter(minNumber)
-            setEdit(false)
         }
         setDisabled(true)
 
@@ -37,16 +54,12 @@ function App() {
             let maxNumber = JSON.parse(maxString)
             setFinishValue(maxNumber)
         }
+
     }, [])
 
-    useEffect(() => { //useEffect  отрабатыввает при изменении startValue
-        if (startValue < 0 || startValue > finishValue || finishValue < 0) {
-            setAlarm('Incorrect value')
-            setEdit(true)
-        } else if (startValue > 0 || startValue < finishValue || finishValue > 0) {
-            setEdit(false)
-        }
-    }, [startValue, finishValue])
+
+
+    console.log(edit)
 
 
     const callBackHandlerForSet = () => {
@@ -76,6 +89,7 @@ function App() {
                      startValue={startValue}
                      finishValue={finishValue}
                      disabled={disabled}
+                     alarm={alarm}
             />
             <Counter
                 startValue={startValue}

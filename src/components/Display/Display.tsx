@@ -11,15 +11,12 @@ type  propsTypeCounter = {
 }
 
 export const Display: React.FC<propsTypeCounter> = ({
-                                                        startValue,
                                                         finishValue,
                                                         counter,
                                                         alarm,
                                                         edit,
                                                         begin,
-                                                        ...props
                                                     }: propsTypeCounter) => {
-
     return (
         edit
             ? <div className={styles.display}>

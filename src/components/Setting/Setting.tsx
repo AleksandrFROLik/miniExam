@@ -12,7 +12,7 @@ type SettingType = {
     startValue: number
     finishValue: number
     disabled: boolean
-
+    alarm:string|null
 }
 
 export const Setting = ({
@@ -22,9 +22,8 @@ export const Setting = ({
                             startValue,
                             finishValue,
                             disabled,
-
+                            alarm
                         }: SettingType) => {
-
 
     return (
         <div className={style.counterWrapper}>
@@ -32,7 +31,8 @@ export const Setting = ({
                             maxInput={maxInput}
                             startValue={startValue}
                             finishValue={finishValue}
-                            disabled={disabled}
+                            alarm={alarm}
+
 
             />
             <div className={styles.button}>

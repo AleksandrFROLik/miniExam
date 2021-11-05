@@ -3,9 +3,6 @@ import './App.css';
 import {Counter} from "./components/Counter";
 import {Setting} from "./components/Setting/Setting";
 
-
-
-
 function App() {
 
     let [startValue, setStartValue] = useState<number>(0)
@@ -23,11 +20,9 @@ function App() {
             setEdit(true)
             setBegin('enter value and press "set"')
         }
-        console.log('1')
     },[])
 
     useEffect(() => { //useEffect  отрабатыввает при изменении startValue
-        console.log('2')
         if (startValue < 0 || startValue > finishValue || finishValue < 0 || (startValue>0 && finishValue>0 && startValue === finishValue)) {
             setAlarm('Incorrect value')
             setEdit(true)
@@ -36,30 +31,24 @@ function App() {
             setEdit(true)
             setBegin('enter value and press "set"')
         }
-
     },[startValue, finishValue])
 
     useEffect(() => { //useEffect применяется когда обновляется страница
-        console.log('3')
+
         let minString = localStorage.getItem('minValue')
         if (minString) {
             let minNumber = JSON.parse(minString)
             setStartValue(minNumber)
             setCounter(minNumber)
         }
-        setDisabled(true)
+        setDisabled(false)
 
         let maxString = localStorage.getItem('maxValue')
         if (maxString) {
             let maxNumber = JSON.parse(maxString)
             setFinishValue(maxNumber)
         }
-
     }, [])
-
-
-
-    console.log(edit)
 
 
     const callBackHandlerForSet = () => {
@@ -69,7 +58,6 @@ function App() {
         localStorage.setItem("minValue", startValue.toString())
         localStorage.setItem("maxValue", finishValue.toString())
     }
-
 
     const minInput = (min: number) => {
         setStartValue(min)
@@ -99,15 +87,13 @@ function App() {
                 disabled={disabled}
                 alarm={alarm}
                 edit={edit}
-                setAlarm={setAlarm}
                 setEdit={setEdit}
                 begin={begin}
-                setBegin={setBegin}
             />
         </div>
     );
 }
 
-export default App;
+export default React.memo(App) ;
 
 

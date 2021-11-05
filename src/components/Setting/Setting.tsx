@@ -32,8 +32,6 @@ export const Setting = ({
                             startValue={startValue}
                             finishValue={finishValue}
                             alarm={alarm}
-
-
             />
             <div className={styles.button}>
                 <Button callBack={callBackHandlerForSet}

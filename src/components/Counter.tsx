@@ -11,10 +11,9 @@ type  propsTypeCounter = {
     disabled: boolean
     alarm: string | null
     edit: boolean
-    setAlarm: (alarm: string | null) => void
     setEdit: (edit: boolean) => void
     begin: string | null
-    setBegin: (begin: string | null) => void
+
 
 }
 
@@ -26,20 +25,13 @@ export const Counter: React.FC<propsTypeCounter> = ({
                                                         disabled,
                                                         alarm,
                                                         edit,
-                                                        setAlarm,
-                                                        setEdit,
-                                                        begin,
-                                                        setBegin,
-
+                                                        begin
                                                     }: propsTypeCounter) => {
 
     const callBackHandlerForIncr = () => {
-        if (counter >= finishValue) {
-            return
-        }
-        let result = counter + 1
-        setCounter(result)
+        setCounter(counter + 1)
     }
+
     const callBackHandlerForReset = () => {
         setCounter(startValue)
     }

@@ -23,14 +23,22 @@ export const DisplaySetting = ({minInput, maxInput, startValue, finishValue}: Di
     return (
         <div className={styles.display}>
             <div className={styles.inputItems}>
-                <div className={finishValue < 0 || startValue > finishValue || (startValue>0 && finishValue>0 && startValue === finishValue) ? styles.inputMin : styles.noError} >
+                <div
+                    className={finishValue < 0 ||
+                        (finishValue < 0 && startValue > finishValue) ||
+                        (finishValue > 0 && startValue > finishValue)||
+                        (startValue > 0 && finishValue > 0 && startValue === finishValue )
+                        ? styles.inputMin : styles.noError}>
                     <Input
                         callBack={onChangeHandlerMax}
                         value={finishValue}
                         title='max value'
                     />
                 </div>
-                <div className={startValue < 0 || startValue > finishValue || (startValue>0 && finishValue>0 && startValue === finishValue)  ? styles.inputMin : styles.noError}>
+                <div className={startValue < 0 ||
+                        (finishValue > 0 && startValue > finishValue )||
+                        (startValue > 0 && finishValue > 0 && startValue === finishValue)
+                        ? styles.inputMin : styles.noError}>
                     <Input
                         callBack={onChangeHandlerMin}
                         value={startValue}
@@ -42,4 +50,6 @@ export const DisplaySetting = ({minInput, maxInput, startValue, finishValue}: Di
         </div>
     )
 }
+
+
 

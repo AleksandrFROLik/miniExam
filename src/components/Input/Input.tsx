@@ -2,8 +2,9 @@ import React, {ChangeEvent} from "react";
 
 type InputType = {
     callBack:(value: number)=>void
-    value:number
+    value: any
     title:string
+
 }
 
 export const Input = ({ callBack, value,  title}:InputType) => {
@@ -19,6 +20,7 @@ export const Input = ({ callBack, value,  title}:InputType) => {
                 value={value}
                 type='number'
                 onChange={callBackHandler}
+
             />
         </>
     )

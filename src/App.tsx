@@ -3,6 +3,8 @@ import './App.css';
 import {Counter} from "./components/Counter";
 import {Setting} from "./components/Setting/Setting";
 
+
+
 function App() {
 
     let [startValue, setStartValue] = useState<number>(0)
@@ -84,6 +86,7 @@ function App() {
                 finishValue={finishValue}
                 counter={counter}
                 setCounter={setCounter}
+                setStartValue={setStartValue}
                 disabled={disabled}
                 alarm={alarm}
                 edit={edit}

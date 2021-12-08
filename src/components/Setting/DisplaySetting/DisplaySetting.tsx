@@ -10,7 +10,7 @@ type DisplaySettingType = {
     alarm: string | null
 }
 
-export const DisplaySetting = ({minInput, maxInput, startValue, finishValue}: DisplaySettingType) => {
+export const DisplaySetting: React.FC<DisplaySettingType> = ({minInput, maxInput, startValue, finishValue}: DisplaySettingType) => {
 
     const onChangeHandlerMax = (maxValue: number) => {
         maxInput(maxValue)

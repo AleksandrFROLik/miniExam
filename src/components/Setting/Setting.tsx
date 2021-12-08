@@ -15,7 +15,7 @@ type SettingType = {
     alarm:string|null
 }
 
-export const Setting = ({
+export const Setting: React.FC<SettingType> = ({
                             callBackHandlerForSet,
                             minInput,
                             maxInput,

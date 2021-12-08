@@ -3,9 +3,11 @@ import styles from './Counter.module.css'
 import {Display} from "./Display/Display";
 import {Button} from "./Button/Button";
 
+
 type  propsTypeCounter = {
     startValue: number
     finishValue: number
+    setStartValue: (startValue: number) => void
     counter: number
     setCounter: (counter: number) => void
     disabled: boolean
@@ -50,7 +52,7 @@ export const Counter: React.FC<propsTypeCounter> = ({
             <div className={styles.button}>
                 <Button
                     callBack={callBackHandlerForIncr}
-                    disabled={!disabled || counter === finishValue}
+                    disabled={!disabled || counter >= finishValue}
                     name="Incr"
                 />
                 <Button

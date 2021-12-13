@@ -60,16 +60,16 @@ function App() {
         localStorage.setItem("minValue", startValue.toString())
         localStorage.setItem("maxValue", finishValue.toString())
     }
-    //
-    // const minInput = (min: number) => {
-    //     setStartValue(min)
-    //     setDisabled(false)
-    // }
-    //
-    // const maxInput = (max: number) => {
-    //     setFinishValue(max)
-    //     setDisabled(false)
-    // }
+
+    const minInput = (min: number) => {
+        setStartValue(min)
+        setDisabled(false)
+    }
+
+    const maxInput = (max: number) => {
+        setFinishValue(max)
+        setDisabled(false)
+    }
 
     return (
         <div className="App">

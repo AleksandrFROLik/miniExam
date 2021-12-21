@@ -3,32 +3,32 @@ import styles from './Counter.module.css'
 import {Display} from "./Display/Display";
 import {Button} from "./Button/Button";
 import {mainValueType} from "../App";
+import {useDispatch, useSelector} from "react-redux";
+import {rootReducerType} from "../bll/store";
+import {incrementCounterAC, setValueForCounterAC} from "../bll/CounterReducer";
 
 
 type  propsTypeCounter = {
-    counter: number
-    setCounter: (counter: number) => void
     disabled: boolean
     begin: string | null,
     mainValue: mainValueType
-
-
 }
 
 export const Counter: React.FC<propsTypeCounter> = ({
-                                                        counter,
-                                                        setCounter,
                                                         disabled,
                                                         begin,
                                                         mainValue,
                                                     }: propsTypeCounter) => {
 
+    const counter = useSelector<rootReducerType, number>(state => state.counter.count)
+    const dispatch = useDispatch()
+
     const callBackHandlerForIncr = () => {
-        setCounter(counter + 1)
+        dispatch(incrementCounterAC())
     }
 
     const callBackHandlerForReset = () => {
-        setCounter(mainValue.minValue)
+        dispatch(setValueForCounterAC(mainValue.minValue))
     }
 
     return (

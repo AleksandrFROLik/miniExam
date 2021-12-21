@@ -10,7 +10,7 @@ type InputType = {
 export const Input = ({ callBack, value,  title}:InputType) => {
 
     const callBackHandler = (e: ChangeEvent<HTMLInputElement>)=> {
-        callBack(JSON.parse(e.currentTarget.value))
+        callBack(+(e.currentTarget.value))
     }
 
     return (

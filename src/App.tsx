@@ -2,52 +2,48 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from "./components/Counter";
 import {Setting} from "./components/Setting/Setting";
+import {useDispatch} from "react-redux";
+import {setValueForCounterAC} from "./bll/CounterReducer";
 
 
-
-export type mainValueType = {minValue:number, maxValue:number}
+export type mainValueType = { minValue: number, maxValue: number }
 
 function App() {
 
-    let [mainValue, setMainValue] = useState({minValue:0, maxValue:0})
-    let [counter, setCounter] = useState<number>(mainValue.minValue)
+    let [mainValue, setMainValue] = useState({minValue: 0, maxValue: 0})
     let [disabled, setDisabled] = useState<boolean>(false)
     let [begin, setBegin] = useState<string | null>(null)
 
+    const dispatch = useDispatch()
 
-    useEffect(() => { //useEffect  отрабатыввает в самом начале.
+    useEffect(() => {
+        if (mainValue.minValue < 0 || mainValue.minValue > mainValue.maxValue || mainValue.maxValue < 0 || (mainValue.minValue > 0 && mainValue.maxValue > 0 && mainValue.minValue === mainValue.maxValue)) {
+            setBegin('Incorrect value')
+        } else if (mainValue.minValue > 0 || mainValue.minValue < mainValue.maxValue || mainValue.maxValue > 0) {
+            setBegin('enter value and press "set"')
+        }
+    }, [mainValue.minValue, mainValue.maxValue])
+
+    useEffect(() => {
         if (mainValue.minValue === 0 && mainValue.maxValue === 0) {
             setBegin('enter value and press "set"')
         }
-    },[])
-
-    useEffect(() => { //useEffect  отрабатыввает при изменении startValue
-        if (mainValue.minValue  < 0 || mainValue.minValue  > mainValue.maxValue || mainValue.maxValue < 0 || (mainValue.minValue >0 && mainValue.maxValue>0 && mainValue.minValue  === mainValue.maxValue)) {
-            setBegin('Incorrect value')
-        } else if (mainValue.minValue  > 0 || mainValue.minValue < mainValue.maxValue || mainValue.maxValue > 0) {
-            setBegin('enter value and press "set"')
-        }
-    },[mainValue.minValue, mainValue.maxValue])
-
-    useEffect(() => { //useEffect применяется когда обновляется страница
 
         let minString = localStorage.getItem('minValue')
-        if (minString) {
-            let minNumber = JSON.parse(minString)
-            setMainValue({...mainValue, minValue: minNumber})
+        let maxString = localStorage.getItem('maxValue')
+
+        if (minString && maxString) {
+            setMainValue({maxValue: +maxString, minValue: +minString})
         }
         setDisabled(false)
 
-        let maxString = localStorage.getItem('maxValue')
-        if (maxString) {
-            let maxNumber = JSON.parse(maxString)
-            setMainValue({...mainValue, maxValue: maxNumber})
-        }
+
     }, [])
 
 
     const callBackHandlerForSet = () => {
-        setCounter(mainValue.minValue)
+        dispatch(setValueForCounterAC(mainValue.minValue))
+
         setDisabled(true)
         setBegin(null)
         localStorage.setItem("minValue", mainValue.minValue.toString())
@@ -74,8 +70,6 @@ function App() {
             />
             <Counter
                 mainValue={mainValue}
-                counter={counter}
-                setCounter={setCounter}
                 disabled={disabled}
                 begin={begin}
             />
@@ -83,6 +77,6 @@ function App() {
     );
 }
 
-export default React.memo(App) ;
+export default App;
 
 

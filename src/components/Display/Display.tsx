@@ -1,27 +1,25 @@
 import React from "react";
 import styles from './Display.module.css'
+import {mainValueType} from "../../App";
 
 type  propsTypeCounter = {
-    startValue: number
-    finishValue: number
     counter: number
-    edit: boolean
     begin: string | null
+    mainValue: mainValueType
 }
 
 export const Display: React.FC<propsTypeCounter> = ({
-                                                        finishValue,
                                                         counter,
-                                                        edit,
                                                         begin,
+                                                        mainValue,
                                                     }: propsTypeCounter) => {
     return (
-        edit
+        begin
             ? <div className={styles.display}>
-                <p className={(begin === 'Incorrect value') ? styles.errorEvent : styles.begin}>{begin}</p>
+                <div className={(begin === 'Incorrect value') ? styles.errorEvent : styles.begin}>{begin}</div>
             </div>
             : <div className={styles.display}>
-                <p className={counter === finishValue ? styles.max : styles.textItem}>{counter}</p>
+                <div className={counter === mainValue.maxValue ? styles.max : styles.textItem}>{counter}</div>
             </div>
 
     )

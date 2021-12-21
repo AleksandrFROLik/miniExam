@@ -1,16 +1,16 @@
 import React from "react";
 import styles from "./DisplaySetting.module.css";
 import {Input} from "../../Input/Input";
+import {mainValueType} from "../../../App";
 
 type DisplaySettingType = {
     minInput: (min: number) => void
     maxInput: (max: number) => void
-    startValue: number
-    finishValue: number
+    mainValue: mainValueType
 
 }
 
-export const DisplaySetting: React.FC<DisplaySettingType> = ({minInput, maxInput, startValue, finishValue}: DisplaySettingType) => {
+ export const DisplaySetting: React.FC<DisplaySettingType> = ({minInput, maxInput, mainValue}: DisplaySettingType) => {
 
     const onChangeHandlerMax = (maxValue: number) => {
         maxInput(maxValue)
@@ -24,24 +24,24 @@ export const DisplaySetting: React.FC<DisplaySettingType> = ({minInput, maxInput
         <div className={styles.display}>
             <div className={styles.inputItems}>
                 <div
-                    className={finishValue < 0 ||
-                        (finishValue < 0 && startValue > finishValue) ||
-                        (finishValue > 0 && startValue > finishValue)||
-                        (startValue > 0 && finishValue > 0 && startValue === finishValue )
+                    className={mainValue.maxValue < 0 ||
+                        (mainValue.maxValue < 0 && mainValue.minValue > mainValue.maxValue) ||
+                        (mainValue.maxValue > 0 && mainValue.minValue > mainValue.maxValue)||
+                        (mainValue.minValue > 0 && mainValue.maxValue > 0 && mainValue.minValue === mainValue.maxValue )
                         ? styles.inputMin : styles.noError}>
                     <Input
                         callBack={onChangeHandlerMax}
-                        value={finishValue}
+                        value={mainValue.maxValue}
                         title='max value'
                     />
                 </div>
-                <div className={startValue < 0 ||
-                        (finishValue > 0 && startValue > finishValue )||
-                        (startValue > 0 && finishValue > 0 && startValue === finishValue)
+                <div className={mainValue.minValue < 0 ||
+                        (mainValue.maxValue > 0 && mainValue.minValue > mainValue.maxValue )||
+                        (mainValue.minValue > 0 && mainValue.maxValue > 0 && mainValue.minValue === mainValue.maxValue)
                         ? styles.inputMin : styles.noError}>
                     <Input
                         callBack={onChangeHandlerMin}
-                        value={startValue}
+                        value={mainValue.minValue}
                         title='start value'
                     />
                 </div>

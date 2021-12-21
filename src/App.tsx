@@ -5,66 +5,62 @@ import {Setting} from "./components/Setting/Setting";
 
 
 
+export type mainValueType = {minValue:number, maxValue:number}
+
 function App() {
 
-    let [startValue, setStartValue] = useState<number>(0)
-    let [finishValue, setFinishValue] = useState<number>(0)
-    let [counter, setCounter] = useState<number>(startValue)
+    let [mainValue, setMainValue] = useState({minValue:0, maxValue:0})
+    let [counter, setCounter] = useState<number>(mainValue.minValue)
     let [disabled, setDisabled] = useState<boolean>(false)
     let [begin, setBegin] = useState<string | null>(null)
-    let [edit, setEdit] = useState<boolean>(false)
 
 
     useEffect(() => { //useEffect  отрабатыввает в самом начале.
-        if (startValue === 0 && finishValue === 0) {
-            setEdit(true)
+        if (mainValue.minValue === 0 && mainValue.maxValue === 0) {
             setBegin('enter value and press "set"')
         }
     },[])
 
     useEffect(() => { //useEffect  отрабатыввает при изменении startValue
-        if (startValue < 0 || startValue > finishValue || finishValue < 0 || (startValue>0 && finishValue>0 && startValue === finishValue)) {
+        if (mainValue.minValue  < 0 || mainValue.minValue  > mainValue.maxValue || mainValue.maxValue < 0 || (mainValue.minValue >0 && mainValue.maxValue>0 && mainValue.minValue  === mainValue.maxValue)) {
             setBegin('Incorrect value')
-            setEdit(true)
-        } else if (startValue > 0 || startValue < finishValue || finishValue > 0) {
-            setEdit(true)
+        } else if (mainValue.minValue  > 0 || mainValue.minValue < mainValue.maxValue || mainValue.maxValue > 0) {
             setBegin('enter value and press "set"')
         }
-    },[startValue, finishValue])
+    },[mainValue.minValue, mainValue.maxValue])
 
     useEffect(() => { //useEffect применяется когда обновляется страница
 
         let minString = localStorage.getItem('minValue')
         if (minString) {
             let minNumber = JSON.parse(minString)
-            setStartValue(minNumber)
-            setCounter(minNumber)
+            setMainValue({...mainValue, minValue: minNumber})
         }
         setDisabled(false)
 
         let maxString = localStorage.getItem('maxValue')
         if (maxString) {
             let maxNumber = JSON.parse(maxString)
-            setFinishValue(maxNumber)
+            setMainValue({...mainValue, maxValue: maxNumber})
         }
     }, [])
 
 
     const callBackHandlerForSet = () => {
-        setCounter(startValue)
+        setCounter(mainValue.minValue)
         setDisabled(true)
-        setEdit(false)
-        localStorage.setItem("minValue", startValue.toString())
-        localStorage.setItem("maxValue", finishValue.toString())
+        setBegin(null)
+        localStorage.setItem("minValue", mainValue.minValue.toString())
+        localStorage.setItem("maxValue", mainValue.maxValue.toString())
     }
 
     const minInput = (min: number) => {
-        setStartValue(min)
+        setMainValue({...mainValue, minValue: min})
         setDisabled(false)
     }
 
     const maxInput = (max: number) => {
-        setFinishValue(max)
+        setMainValue({...mainValue, maxValue: max})
         setDisabled(false)
     }
 
@@ -73,19 +69,14 @@ function App() {
             <Setting callBackHandlerForSet={callBackHandlerForSet}
                      minInput={minInput}
                      maxInput={maxInput}
-                     startValue={startValue}
-                     finishValue={finishValue}
+                     mainValue={mainValue}
                      disabled={disabled}
             />
             <Counter
-                startValue={startValue}
-                finishValue={finishValue}
+                mainValue={mainValue}
                 counter={counter}
                 setCounter={setCounter}
-                setStartValue={setStartValue}
                 disabled={disabled}
-                edit={edit}
-                setEdit={setEdit}
                 begin={begin}
             />
         </div>

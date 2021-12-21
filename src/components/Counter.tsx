@@ -2,30 +2,25 @@ import React from "react";
 import styles from './Counter.module.css'
 import {Display} from "./Display/Display";
 import {Button} from "./Button/Button";
+import {mainValueType} from "../App";
 
 
 type  propsTypeCounter = {
-    startValue: number
-    finishValue: number
-    setStartValue: (startValue: number) => void
     counter: number
     setCounter: (counter: number) => void
     disabled: boolean
-    edit: boolean
-    setEdit: (edit: boolean) => void
-    begin: string | null
+    begin: string | null,
+    mainValue: mainValueType
 
 
 }
 
 export const Counter: React.FC<propsTypeCounter> = ({
-                                                        startValue,
-                                                        finishValue,
                                                         counter,
                                                         setCounter,
                                                         disabled,
-                                                        edit,
-                                                        begin
+                                                        begin,
+                                                        mainValue,
                                                     }: propsTypeCounter) => {
 
     const callBackHandlerForIncr = () => {
@@ -33,28 +28,26 @@ export const Counter: React.FC<propsTypeCounter> = ({
     }
 
     const callBackHandlerForReset = () => {
-        setCounter(startValue)
+        setCounter(mainValue.minValue)
     }
 
     return (
         <div className={styles.counterWrapper}>
             <Display
-                startValue={startValue}
-                finishValue={finishValue}
+                mainValue={mainValue}
                 counter={counter}
-                edit={edit}
                 begin={begin}
             />
 
             <div className={styles.button}>
                 <Button
                     callBack={callBackHandlerForIncr}
-                    disabled={!disabled || counter >= finishValue}
+                    disabled={!disabled || counter >= mainValue.maxValue}
                     name="Incr"
                 />
                 <Button
                     callBack={callBackHandlerForReset}
-                    disabled={!disabled || counter === startValue}
+                    disabled={!disabled || counter === mainValue.minValue}
                     name="Reset"
                 />
             </div>

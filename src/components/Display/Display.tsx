@@ -5,7 +5,6 @@ type  propsTypeCounter = {
     startValue: number
     finishValue: number
     counter: number
-    alarm: string | null
     edit: boolean
     begin: string | null
 }
@@ -13,14 +12,13 @@ type  propsTypeCounter = {
 export const Display: React.FC<propsTypeCounter> = ({
                                                         finishValue,
                                                         counter,
-                                                        alarm,
                                                         edit,
                                                         begin,
                                                     }: propsTypeCounter) => {
     return (
         edit
             ? <div className={styles.display}>
-                <p className={alarm ? styles.errorEvent : styles.begin}>{alarm ? alarm : begin}</p>
+                <p className={(begin === 'Incorrect value') ? styles.errorEvent : styles.begin}>{begin}</p>
             </div>
             : <div className={styles.display}>
                 <p className={counter === finishValue ? styles.max : styles.textItem}>{counter}</p>

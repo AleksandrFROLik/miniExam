@@ -6,18 +6,16 @@ import {Setting} from "./components/Setting/Setting";
 
 
 function App() {
-    {"hello"}
+
     let [startValue, setStartValue] = useState<number>(0)
     let [finishValue, setFinishValue] = useState<number>(0)
     let [counter, setCounter] = useState<number>(startValue)
     let [disabled, setDisabled] = useState<boolean>(false)
-    let [alarm, setAlarm] = useState<string | null>(null)
     let [begin, setBegin] = useState<string | null>(null)
     let [edit, setEdit] = useState<boolean>(false)
 
 
     useEffect(() => { //useEffect  отрабатыввает в самом начале.
-
         if (startValue === 0 && finishValue === 0) {
             setEdit(true)
             setBegin('enter value and press "set"')
@@ -26,10 +24,9 @@ function App() {
 
     useEffect(() => { //useEffect  отрабатыввает при изменении startValue
         if (startValue < 0 || startValue > finishValue || finishValue < 0 || (startValue>0 && finishValue>0 && startValue === finishValue)) {
-            setAlarm('Incorrect value')
+            setBegin('Incorrect value')
             setEdit(true)
         } else if (startValue > 0 || startValue < finishValue || finishValue > 0) {
-            setAlarm(null)
             setEdit(true)
             setBegin('enter value and press "set"')
         }
@@ -79,7 +76,6 @@ function App() {
                      startValue={startValue}
                      finishValue={finishValue}
                      disabled={disabled}
-                     alarm={alarm}
             />
             <Counter
                 startValue={startValue}
@@ -88,7 +84,6 @@ function App() {
                 setCounter={setCounter}
                 setStartValue={setStartValue}
                 disabled={disabled}
-                alarm={alarm}
                 edit={edit}
                 setEdit={setEdit}
                 begin={begin}

@@ -7,7 +7,7 @@ type DisplaySettingType = {
     maxInput: (max: number) => void
     startValue: number
     finishValue: number
-    alarm: string | null
+
 }
 
 export const DisplaySetting: React.FC<DisplaySettingType> = ({minInput, maxInput, startValue, finishValue}: DisplaySettingType) => {

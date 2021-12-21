@@ -12,7 +12,6 @@ type SettingType = {
     startValue: number
     finishValue: number
     disabled: boolean
-    alarm:string|null
 }
 
 export const Setting: React.FC<SettingType> = ({
@@ -22,7 +21,6 @@ export const Setting: React.FC<SettingType> = ({
                             startValue,
                             finishValue,
                             disabled,
-                            alarm
                         }: SettingType) => {
 
     return (
@@ -31,7 +29,7 @@ export const Setting: React.FC<SettingType> = ({
                             maxInput={maxInput}
                             startValue={startValue}
                             finishValue={finishValue}
-                            alarm={alarm}
+
             />
             <div className={styles.button}>
                 <Button callBack={callBackHandlerForSet}

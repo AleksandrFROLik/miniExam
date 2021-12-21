@@ -11,7 +11,6 @@ type  propsTypeCounter = {
     counter: number
     setCounter: (counter: number) => void
     disabled: boolean
-    alarm: string | null
     edit: boolean
     setEdit: (edit: boolean) => void
     begin: string | null
@@ -25,7 +24,6 @@ export const Counter: React.FC<propsTypeCounter> = ({
                                                         counter,
                                                         setCounter,
                                                         disabled,
-                                                        alarm,
                                                         edit,
                                                         begin
                                                     }: propsTypeCounter) => {
@@ -44,7 +42,6 @@ export const Counter: React.FC<propsTypeCounter> = ({
                 startValue={startValue}
                 finishValue={finishValue}
                 counter={counter}
-                alarm={alarm}
                 edit={edit}
                 begin={begin}
             />

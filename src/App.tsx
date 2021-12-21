@@ -6,7 +6,7 @@ import {Setting} from "./components/Setting/Setting";
 
 
 function App() {
-
+    {"hello"}
     let [startValue, setStartValue] = useState<number>(0)
     let [finishValue, setFinishValue] = useState<number>(0)
     let [counter, setCounter] = useState<number>(startValue)

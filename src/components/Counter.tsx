@@ -9,18 +9,15 @@ import {incrementCounterAC, setValueForCounterAC} from "../bll/CounterReducer";
 
 
 type  propsTypeCounter = {
-    disabled: boolean
-    begin: string | null,
     mainValue: mainValueType
 }
 
 export const Counter: React.FC<propsTypeCounter> = ({
-                                                        disabled,
-                                                        begin,
                                                         mainValue,
                                                     }: propsTypeCounter) => {
 
     const counter = useSelector<rootReducerType, number>(state => state.counter.count)
+    const disabled1 = useSelector<rootReducerType, boolean>(state => state.disabled.disabled)
     const dispatch = useDispatch()
 
     const callBackHandlerForIncr = () => {
@@ -36,18 +33,17 @@ export const Counter: React.FC<propsTypeCounter> = ({
             <Display
                 mainValue={mainValue}
                 counter={counter}
-                begin={begin}
             />
 
             <div className={styles.button}>
                 <Button
                     callBack={callBackHandlerForIncr}
-                    disabled={!disabled || counter >= mainValue.maxValue}
+                    disabled={!disabled1 || counter >= mainValue.maxValue}
                     name="Incr"
                 />
                 <Button
                     callBack={callBackHandlerForReset}
-                    disabled={!disabled || counter === mainValue.minValue}
+                    disabled={!disabled1 || counter === mainValue.minValue}
                     name="Reset"
                 />
             </div>

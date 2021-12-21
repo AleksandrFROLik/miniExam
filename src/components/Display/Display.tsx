@@ -1,22 +1,23 @@
 import React from "react";
 import styles from './Display.module.css'
 import {mainValueType} from "../../App";
+import {useSelector} from "react-redux";
+import {rootReducerType} from "../../bll/store";
 
 type  propsTypeCounter = {
     counter: number
-    begin: string | null
     mainValue: mainValueType
 }
 
 export const Display: React.FC<propsTypeCounter> = ({
                                                         counter,
-                                                        begin,
                                                         mainValue,
                                                     }: propsTypeCounter) => {
+    const warning = useSelector<rootReducerType, string| null>(state => state.warning.warning)
     return (
-        begin
+        warning
             ? <div className={styles.display}>
-                <div className={(begin === 'Incorrect value') ? styles.errorEvent : styles.begin}>{begin}</div>
+                <div className={(warning === 'Incorrect value') ? styles.errorEvent : styles.begin}>{warning}</div>
             </div>
             : <div className={styles.display}>
                 <div className={counter === mainValue.maxValue ? styles.max : styles.textItem}>{counter}</div>

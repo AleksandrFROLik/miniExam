@@ -9,9 +9,9 @@ export type InitialStateType = {
 export const WarningReducer = (state: InitialStateType = InitialState, action: WarningActionType): InitialStateType => {
     switch (action.type) {
         case "WARNING": {
-           return {
-               warning: action.isDone
-           }
+            return {
+                warning: action.isDone
+            }
         }
         default:
             return state

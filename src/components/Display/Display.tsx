@@ -1,8 +1,8 @@
 import React from "react";
 import styles from './Display.module.css'
-import {mainValueType} from "../../App";
 import {useSelector} from "react-redux";
 import {rootReducerType} from "../../bll/store";
+import {mainValueType} from "../../bll/CounterReducer";
 
 type  propsTypeCounter = {
     counter: number
@@ -13,7 +13,7 @@ export const Display: React.FC<propsTypeCounter> = ({
                                                         counter,
                                                         mainValue,
                                                     }: propsTypeCounter) => {
-    const warning = useSelector<rootReducerType, string| null>(state => state.warning.warning)
+    const warning = useSelector<rootReducerType, string | null>(state => state.warning.warning)
     return (
         warning
             ? <div className={styles.display}>

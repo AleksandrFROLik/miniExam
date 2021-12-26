@@ -3,33 +3,29 @@ import style from "./Setting.module.css";
 import {DisplaySetting} from "./DisplaySetting/DisplaySetting";
 import {Button} from "../Button/Button";
 import styles from "../Counter.module.css";
-import {mainValueType} from "../../App";
 import {useSelector} from "react-redux";
 import {rootReducerType} from "../../bll/store";
+import { mainValueType } from "../../bll/CounterReducer";
 
 
 type SettingType = {
     callBackHandlerForSet: () => void
     minInput: (min: number) => void
     maxInput: (max: number) => void
-    // disabled: boolean
-    mainValue: mainValueType
 }
 
 export const Setting: React.FC<SettingType> = ({   callBackHandlerForSet,
                                                    minInput,
                                                    maxInput,
-                                                   // disabled,
-                                                   mainValue,
                                                }: SettingType) => {
 
     const disabled1 = useSelector<rootReducerType, boolean>(state => state.disabled.disabled)
+    const mainValue = useSelector<rootReducerType, mainValueType>(state => state.counter.mainValue)
 
     return (
         <div className={style.counterWrapper}>
             <DisplaySetting minInput={minInput}
                             maxInput={maxInput}
-                            mainValue={mainValue}
             />
 
             <div className={styles.button}>

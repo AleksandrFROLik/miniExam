@@ -2,21 +2,15 @@ import React from "react";
 import styles from './Counter.module.css'
 import {Display} from "./Display/Display";
 import {Button} from "./Button/Button";
-import {mainValueType} from "../App";
 import {useDispatch, useSelector} from "react-redux";
 import {rootReducerType} from "../bll/store";
-import {incrementCounterAC, setValueForCounterAC} from "../bll/CounterReducer";
+import {incrementCounterAC, mainValueType, setValueForCounterAC} from "../bll/CounterReducer";
 
 
-type  propsTypeCounter = {
-    mainValue: mainValueType
-}
-
-export const Counter: React.FC<propsTypeCounter> = ({
-                                                        mainValue,
-                                                    }: propsTypeCounter) => {
+export const Counter = () => {
 
     const counter = useSelector<rootReducerType, number>(state => state.counter.count)
+    const mainValue = useSelector<rootReducerType, mainValueType>(state => state.counter.mainValue)
     const disabled1 = useSelector<rootReducerType, boolean>(state => state.disabled.disabled)
     const dispatch = useDispatch()
 

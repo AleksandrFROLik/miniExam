@@ -3,12 +3,27 @@ import {CounterReducer} from "./CounterReducer";
 import {DisabledReducer} from "./DisabledReducer";
 import {WarningReducer} from "./WarningReducer";
 
-let rootReducer = combineReducers( {
+export type rootReducerType = ReturnType<typeof rootReducer>
+
+let rootReducer = combineReducers({
     counter: CounterReducer,
     disabled: DisabledReducer,
     warning: WarningReducer,
+
+
 })
 
-export type rootReducerType = ReturnType<typeof rootReducer>
+let preloadstate;
+const persistedToString = localStorage.getItem('app-state')
+if (persistedToString) {
+    preloadstate = JSON.parse(persistedToString)
+}
+console.log(preloadstate)
+console.log(preloadstate)
+console.log(preloadstate)
+console.log(preloadstate)
+export const store = createStore(rootReducer, preloadstate)
 
-export const store = createStore(rootReducer)
+store.subscribe(() => {
+    localStorage.setItem('app-state', JSON.stringify(store.getState().counter.mainValue))
+})

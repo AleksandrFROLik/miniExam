@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {InitialStateType, mainValueType, setMainValueAC, setValueForCounterAC} from "./bll/CounterReducer";
 import {disabledCounterAC} from "./bll/DisabledReducer";
 import {warningCounterAC} from "./bll/WarningReducer";
-import {rootReducerType} from './bll/store';
+import {rootReducerType, store} from './bll/store';
 
 
 function App() {

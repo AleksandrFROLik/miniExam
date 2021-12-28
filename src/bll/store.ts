@@ -18,10 +18,8 @@ const persistedToString = localStorage.getItem('app-state')
 if (persistedToString) {
     preloadstate = JSON.parse(persistedToString)
 }
-console.log(preloadstate)
-console.log(preloadstate)
-console.log(preloadstate)
-console.log(preloadstate)
+
+
 export const store = createStore(rootReducer, preloadstate)
 
 store.subscribe(() => {

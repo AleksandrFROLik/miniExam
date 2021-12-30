@@ -19,9 +19,8 @@ if (persistedToString) {
     preloadstate = JSON.parse(persistedToString)
 }
 
-
 export const store = createStore(rootReducer, preloadstate)
 
 store.subscribe(() => {
-    localStorage.setItem('app-state', JSON.stringify(store.getState().counter.mainValue))
+    localStorage.setItem('app-state', JSON.stringify(store.getState()))
 })

@@ -26,13 +26,10 @@ function App() {
         if (mainValue.minValue === 0 && mainValue.maxValue === 0) {
             dispatch(warningCounterAC('enter value and press "set"'))
         }
-
-        let minString = localStorage.getItem('minValue')
-        let maxString = localStorage.getItem('maxValue')
-
-        if (minString && maxString) {
-            dispatch(setMainValueAC({maxValue: +maxString, minValue: +minString}))
-        }
+        dispatch(setMainValueAC({
+            maxValue: store.getState().counter.mainValue.maxValue,
+            minValue: store.getState().counter.mainValue.minValue
+        }))
         dispatch(disabledCounterAC(false))
 
     }, [dispatch])
@@ -42,8 +39,6 @@ function App() {
         dispatch(setValueForCounterAC(mainValue.minValue))
         dispatch(disabledCounterAC(true))
         dispatch(warningCounterAC(null))
-        localStorage.setItem("minValue", mainValue.minValue.toString())
-        localStorage.setItem("maxValue", mainValue.maxValue.toString())
     }
 
     const minInput = (min: number) => {

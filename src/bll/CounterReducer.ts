@@ -1,6 +1,5 @@
 export type mainValueType = { minValue: number, maxValue: number }
 
-
 const InitialState = {
     count: 0,
     mainValue: {minValue: 0, maxValue: 0}
@@ -47,7 +46,7 @@ export const setValueForCounterAC = (value: number) => {
 }
 
 export type SetMainValueActionType = ReturnType<typeof setMainValueAC>
-export const setMainValueAC = (object:mainValueType) => {
+export const setMainValueAC = (object: mainValueType) => {
     return {
         type: 'SET-MAIN-VALUE',
         object

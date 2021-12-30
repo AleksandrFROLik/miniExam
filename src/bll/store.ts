@@ -9,8 +9,6 @@ let rootReducer = combineReducers({
     counter: CounterReducer,
     disabled: DisabledReducer,
     warning: WarningReducer,
-
-
 })
 
 let preloadstate;
@@ -24,3 +22,5 @@ export const store = createStore(rootReducer, preloadstate)
 store.subscribe(() => {
     localStorage.setItem('app-state', JSON.stringify(store.getState()))
 })
+
+export type AppStateType = ReturnType<typeof rootReducer>
